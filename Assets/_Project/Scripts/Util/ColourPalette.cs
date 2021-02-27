@@ -11,6 +11,11 @@ namespace Util
         [SerializeField] private Color[] colours;
         public Color NotFound;
 
+#if UNITY_EDITOR
+        [Tooltip("Where I found the palette")]
+        [SerializeField] private string url;
+#endif
+
         public event Action OnChange;
 
         public Color GetColour(int index)
