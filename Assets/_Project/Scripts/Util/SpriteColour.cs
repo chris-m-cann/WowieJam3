@@ -7,8 +7,9 @@ namespace Util
     [RequireComponent(typeof(SpriteRenderer))]
     public class SpriteColour : MonoBehaviour
     {
+        public int ColourIndex;
+
         [SerializeField] private ColourPalette palette;
-        [SerializeField] private int colourIndex;
 
         private SpriteRenderer _sprite;
 
@@ -26,17 +27,17 @@ namespace Util
         {
             if (palette == null) return;
             _sprite = GetComponent<SpriteRenderer>();
-            _sprite.color = palette.GetColour(colourIndex);
+            _sprite.color = palette.GetColour(ColourIndex);
             palette.OnChange -= SetUpSpriteColour;
             palette.OnChange += SetUpSpriteColour;
         }
 
         public void ChangeColour(int newColour)
         {
-            colourIndex = newColour;
+            ColourIndex = newColour;
             if (palette != null)
             {
-                _sprite.color = palette.GetColour(colourIndex);
+                _sprite.color = palette.GetColour(ColourIndex);
             }
         }
     }

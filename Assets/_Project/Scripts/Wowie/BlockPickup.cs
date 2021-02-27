@@ -1,10 +1,21 @@
 using UnityEngine;
+using Util;
 
 namespace Wowie
 {
+    [RequireComponent(typeof(SpriteColour))]
     public class BlockPickup : MonoBehaviour
     {
         public TailBlock BlockPrefab;
+        public int ColourIndex => _sprite.ColourIndex;
+        public string Layer;
+
+        private SpriteColour _sprite;
+
+        private void Awake()
+        {
+            _sprite = GetComponent<SpriteColour>();
+        }
 
         public void OnPickup()
         {
