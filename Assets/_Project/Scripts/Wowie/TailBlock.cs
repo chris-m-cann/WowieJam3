@@ -6,11 +6,8 @@ namespace Wowie
 {
     public class TailBlock : MonoBehaviour
     {
-        [SerializeField] private Transform connection;
-        [SerializeField] private float spacing;
-        [SerializeField] private float minDistance;
-
-        private void FixedUpdate()
+        public BlockPickup Pickup;
+        public void Move(Transform connection, float spacing, float minDistance)
         {
             if (connection == null) return;
 
@@ -36,7 +33,19 @@ namespace Wowie
                 transform.position = curr;
                 transform.Rotate(0, 0, angle);
             }
+        }
 
+        private void OnDestroy()
+        {
+            if (Pickup != null)
+            {
+                Pickup.Reset();
+            }
+        }
+
+        public void OnBreakOff()
+        {
+            Destroy(gameObject);
         }
     }
 }
