@@ -19,7 +19,7 @@ namespace Wowie
 
         private Vector2 targetDir = Vector2.zero;
         private Vector3 mousePoint = Vector3.zero;
-
+        private bool _acceptingInput = true;
 
         private void Awake()
         {
@@ -30,6 +30,8 @@ namespace Wowie
 
         private void Update()
         {
+            if (!_acceptingInput) return;
+
             mousePoint = _cam.ScreenToWorldPoint(Input.mousePosition);
             mousePoint.z = transform.position.z;
 
@@ -57,6 +59,11 @@ namespace Wowie
             {
                 _rigidbody.velocity = Vector2.zero;
             }
+        }
+
+        public void StopAcceptingInput()
+        {
+            _acceptingInput = false;
         }
     }
 }

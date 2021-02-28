@@ -45,7 +45,11 @@ namespace Wowie
             if (Vector3.Distance(curr, transform.position) > minDistance)
             {
                 transform.position = curr;
-                transform.Rotate(0, 0, angle);
+
+                var diff = last - curr;
+                var a = Vector3.SignedAngle(transform.right, diff, Vector3.forward);
+
+                transform.Rotate(0, 0, a);
             }
         }
 

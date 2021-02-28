@@ -28,6 +28,18 @@ namespace Wowie
             {
                 block.ThroughGoal = true;
             }
+
+            var colliders = other.GetComponentsInChildren<Collider2D>();
+            foreach (var col in colliders)
+            {
+                col.enabled = false;
+            }
+
+            var player = other.GetComponent<PlayerMovement>();
+            if (player != null)
+            {
+                player.StopAcceptingInput();
+            }
         }
 
         private void OnTriggerExit2D(Collider2D other)
