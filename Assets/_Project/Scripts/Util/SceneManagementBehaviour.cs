@@ -18,6 +18,11 @@ namespace Util
             SceneManager.LoadScene(next);
         }
 
+        public void LoadNextSceneAfterDelay(float delay)
+        {
+            this.ExecuteAfter(delay, LoadNextScene);
+        }
+
         public void LoadSceneByName(string sceneName)
         {
             LoadScene(sceneName);
@@ -32,7 +37,7 @@ namespace Util
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-        
+
         public void Reload()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

@@ -7,6 +7,9 @@ namespace Wowie
     public class TailBlock : MonoBehaviour
     {
         public BlockPickup Pickup;
+        public SpriteRenderer Background;
+        public bool ThroughGoal = false;
+
         public void Move(Transform connection, float spacing, float minDistance)
         {
             if (connection == null) return;
