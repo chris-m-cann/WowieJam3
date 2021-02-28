@@ -7,6 +7,8 @@ namespace Wowie
     public class TailBlock : MonoBehaviour
     {
         public BlockPickup Pickup;
+        public string Layer;
+        public bool ChangesLayer;
         public SpriteRenderer Background;
         public bool ThroughGoal = false;
 

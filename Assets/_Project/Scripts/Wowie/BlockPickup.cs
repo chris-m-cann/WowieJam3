@@ -8,7 +8,8 @@ namespace Wowie
     {
         public TailBlock BlockPrefab;
         public int ColourIndex => _sprite.ColourIndex;
-        public string Layer;
+        public string Layer => BlockPrefab.Layer;
+        public bool ChangesLayer => BlockPrefab.ChangesLayer;
 
         private SpriteColour _sprite;
 

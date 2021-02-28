@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using Util;
 using Util.Events;
+using Wowie.Events;
 
 namespace Wowie
 {
@@ -10,7 +11,7 @@ namespace Wowie
     {
         [SerializeField] private Pair<int, string> layerMap;
 
-        [SerializeField] private IntGameEvent onPickup;
+        [SerializeField] private BlockPickupGameEvent onPickup;
 
         private int _layer = -1;
         private PlayerTail _tail;
@@ -35,7 +36,8 @@ namespace Wowie
 
 
                 _tail.AddBlock(pickup.BlockPrefab, pickup);
-                onPickup.Raise(pickup.ColourIndex);
+
+                onPickup.Raise(pickup);
                 ChangeLayer(pickup);
             }
         }
@@ -47,11 +49,15 @@ namespace Wowie
             if (block != null)
             {
                 _tail.BreakAt(block);
+                onPickup.Raise(block.Pickup);
+                ChangeLayer(block.Pickup);
             }
         }
 
         private void ChangeLayer(BlockPickup pickup)
         {
+            if (!pickup.ChangesLayer) return;
+
             var layer = LayerMask.NameToLayer(pickup.Layer);
 
             if (pickup.Layer.Length != 0 && layer != -1)

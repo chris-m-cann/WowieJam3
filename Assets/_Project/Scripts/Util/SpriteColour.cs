@@ -8,6 +8,8 @@ namespace Util
     public class SpriteColour : MonoBehaviour
     {
         public int ColourIndex;
+        [Range(0, 1)]
+        public float AlphaOverride = 1;
 
         [SerializeField] private ColourPalette palette;
 
@@ -27,9 +29,16 @@ namespace Util
         {
             if (palette == null) return;
             _sprite = GetComponent<SpriteRenderer>();
-            _sprite.color = palette.GetColour(ColourIndex);
+            SetColour();
             palette.OnChange -= SetUpSpriteColour;
             palette.OnChange += SetUpSpriteColour;
+        }
+
+        private void SetColour()
+        {
+            var color = palette.GetColour(ColourIndex);
+            color.a = AlphaOverride;
+            _sprite.color = color;
         }
 
         public void ChangeColour(int newColour)
@@ -37,7 +46,7 @@ namespace Util
             ColourIndex = newColour;
             if (palette != null)
             {
-                _sprite.color = palette.GetColour(ColourIndex);
+                SetColour();
             }
         }
     }
