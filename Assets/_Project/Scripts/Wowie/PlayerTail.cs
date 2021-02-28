@@ -25,8 +25,12 @@ namespace Wowie
 
         public void BreakAt(TailBlock block)
         {
-            var idx = Tail.FindIndex(it => it == block);
-            if (idx != -1)
+            BreakAt(Tail.FindIndex(it => it == block));
+        }
+
+        public void BreakAt(int idx)
+        {
+            if (idx > -1 && idx < Tail.Count)
             {
                 for (int i = idx; i < Tail.Count; i++)
                 {
