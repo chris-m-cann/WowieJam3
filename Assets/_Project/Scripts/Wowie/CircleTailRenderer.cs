@@ -4,6 +4,7 @@ using UnityEngine;
 using Util;
 using Util.Events;
 using Wowie.Events;
+using Void = Util.Void;
 
 namespace Wowie
 {
@@ -14,6 +15,7 @@ namespace Wowie
         [SerializeField] private float alpha = .5f;
         [SerializeField] private SpriteRenderer head;
         [SerializeField] private BlockPickupGameEvent onPickup;
+        [SerializeField] private VoidGameEvent onBreak;
 
 
         private PlayerTail _tail;
@@ -23,11 +25,13 @@ namespace Wowie
         {
             _tail = GetComponent<PlayerTail>();
             onPickup.OnEventTrigger += OnPickup;
+            onBreak.OnEventTrigger += OnBreak;
         }
 
         private void OnDestroy()
         {
             onPickup.OnEventTrigger -= OnPickup;
+            onBreak.OnEventTrigger -= OnBreak;
         }
 
         private void OnPickup(BlockPickup pickup)
@@ -37,6 +41,14 @@ namespace Wowie
                 SetColour(pickup.ColourIndex);
             }
             else if (_lastIndex != -1)
+            {
+                SetColour(_lastIndex);
+            }
+        }
+
+        public void OnBreak(Void v)
+        {
+            if (_lastIndex != -1)
             {
                 SetColour(_lastIndex);
             }

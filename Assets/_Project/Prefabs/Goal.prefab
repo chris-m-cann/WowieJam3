@@ -285,6 +285,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2537456348781521998}
+  - component: {fileID: 3574794175059411599}
+  - component: {fileID: 9120066987781918149}
   m_Layer: 0
   m_Name: Goal
   m_TagString: Untagged
@@ -308,3 +310,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3574794175059411599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2537456348781521997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b61e21152414f3fa78286430bb3f0cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxAngleDegrees: 34
+  maxTranslation: 0.5
+  fequency: 2
+--- !u!114 &9120066987781918149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2537456348781521997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 804309abd4f14ac7863394694157f06e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shaker: {fileID: 3574794175059411599}
+  background: {fileID: 2537456346980902815}
+  circle: {fileID: 2537456347247469184}
+  maxCircleScale: 1.5
+  circleScaleDuration: 1
+  backgroundShakeDuration: 1
+  backgroundShakeMagnitude: 100
+  backgroundShakeDelay: 0.5

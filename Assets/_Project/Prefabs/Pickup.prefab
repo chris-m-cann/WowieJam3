@@ -183,6 +183,7 @@ GameObject:
   - component: {fileID: 8374248388229350778}
   - component: {fileID: 8374248388229350777}
   - component: {fileID: 8374248388229350780}
+  - component: {fileID: 8302791343011824234}
   m_Layer: 6
   m_Name: Pickup
   m_TagString: Pickup
@@ -301,3 +302,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockPrefab: {fileID: 1829990876036507183, guid: 05b1830b0f69bbe4d9f7d0a2eb97a0fb, type: 3}
+  anims: {fileID: 8302791343011824234}
+  col: {fileID: 8374248388229350777}
+--- !u!114 &8302791343011824234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8374248388229350775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e61d3d7ca7004421b9646bdb17507e3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  background: {fileID: 8374248387049070461}
+  foreground: {fileID: 8374248388229350776}
+  maxScaleFactor: 1.5
+  scaleDurationIn: 1
+  scaleDurationOut: 0.5
+  tweenInTime: 0.3
+  tweenOutTime: 0.3

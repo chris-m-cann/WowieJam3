@@ -11,6 +11,10 @@ namespace Wowie
         public string Layer => BlockPrefab.Layer;
         public bool ChangesLayer => BlockPrefab.ChangesLayer;
 
+        [SerializeField] private PickupAnimation anims;
+        [SerializeField] private Collider2D col;
+
+
         private SpriteColour _sprite;
 
         private void Awake()
@@ -20,12 +24,14 @@ namespace Wowie
 
         public void OnPickup()
         {
-            gameObject.SetActive(false);
+            col.enabled = false;
+            anims.Exit(() => gameObject.SetActive(false));
         }
 
         public void Reset()
         {
             gameObject.SetActive(true);
+            anims.Enter(() => col.enabled = true);
         }
     }
 }

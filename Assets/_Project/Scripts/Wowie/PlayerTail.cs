@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Util.Events;
 
 namespace Wowie
 {
@@ -7,6 +8,9 @@ namespace Wowie
     {
         public List<TailBlock> Tail = new List<TailBlock>();
         public float Spacing;
+
+        [SerializeField] private VoidGameEvent onBreak;
+
 
         public void AddBlock(TailBlock newBlock, BlockPickup pickup)
         {
@@ -37,6 +41,7 @@ namespace Wowie
                     Tail[i].OnBreakOff();
                 }
                 Tail.RemoveRange(idx, Tail.Count - idx);
+                onBreak.Raise();
             }
         }
     }

@@ -1,5 +1,7 @@
 using System;
+using UnityEditor;
 using UnityEngine;
+using Util;
 using Wowie.Events;
 
 namespace Wowie
@@ -10,6 +12,7 @@ namespace Wowie
         [SerializeField] private BlockPickupGameEvent onPickup;
         [SerializeField] private LayerMask playerMask;
         [SerializeField] private float alpha;
+        [SerializeField] private float tweenTime = 1f;
 
 
         private SpriteRenderer _sprite;
@@ -18,6 +21,7 @@ namespace Wowie
 
 
         private Collider2D[] _overlapResults = new Collider2D[10];
+
         private void Awake()
         {
             _collider = GetComponent<Collider2D>();
@@ -45,43 +49,51 @@ namespace Wowie
             var layerName = LayerMask.LayerToName(gameObject.layer);
             if (pickup.Layer == layerName)
             {
-                ChangeAlpha(alpha);
+                ChangeAlpha(alpha, null);
             }
             // if we were the correct layer then chop off any blocks in my vacinity
             else if (_sprite.color.a < 1)
             {
-                ChangeAlpha(1);
-
-                var filter = new ContactFilter2D();
-                filter.layerMask = playerMask;
-                var colliders = Physics2D.OverlapCollider(_collider, filter, _overlapResults);
-
-                int idx = int.MaxValue;
-                for (var i = 0; i < colliders; i++)
+                _collider.enabled = false;
+                ChangeAlpha(1, () =>
                 {
-                    var block = _overlapResults[i].GetComponent<TailBlock>();
-                    if (block != null)
+                    _collider.enabled = true;
+                    // EditorApplication.isPaused = true;
+                    var filter = new ContactFilter2D();
+                    filter.layerMask = playerMask;
+                    var colliders = Physics2D.OverlapCollider(_collider, filter, _overlapResults);
+
+                    int idx = int.MaxValue;
+                    for (var i = 0; i < colliders; i++)
                     {
-                        var blockIdx = _playerTail.Tail.IndexOf(block);
-                        if (blockIdx > -1 && blockIdx < idx)
+                        var block = _overlapResults[i].GetComponent<TailBlock>();
+                        if (block != null)
                         {
-                            idx = blockIdx;
+                            var blockIdx = _playerTail.Tail.IndexOf(block);
+                            if (blockIdx > -1 && blockIdx < idx)
+                            {
+                                idx = blockIdx;
+                            }
                         }
                     }
-                }
 
-                if (idx != int.MaxValue)
-                {
-                    _playerTail.BreakAt(idx);
-                }
+                    if (idx != int.MaxValue)
+                    {
+                        _playerTail.BreakAt(idx);
+                    }
+                });
             }
         }
 
-        private void ChangeAlpha(float targetAlpha)
+        private void ChangeAlpha(float targetAlpha, Action onComplete)
         {
-            var color = _sprite.color;
-            color.a = targetAlpha;
-            _sprite.color = color;
+            StopAllCoroutines();
+            StartCoroutine(Tween.CoTweenFloat(_sprite.color.a, targetAlpha, tweenTime, a =>
+            {
+                var color = _sprite.color;
+                color.a = a;
+                _sprite.color = color;
+            }, onComplete, Tween.Lerp));
         }
     }
 }

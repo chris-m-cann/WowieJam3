@@ -12,6 +12,15 @@ namespace Wowie
         public SpriteRenderer Background;
         public bool ThroughGoal = false;
 
+        [SerializeField] private BlockAnimation anims;
+        [SerializeField] private Collider2D col;
+
+        private void Start()
+        {
+            col.enabled = false;
+            anims.OnEnter(() => col.enabled = true);
+        }
+
         public void Move(Transform connection, float spacing, float minDistance)
         {
             if (connection == null) return;
@@ -50,7 +59,8 @@ namespace Wowie
 
         public void OnBreakOff()
         {
-            Destroy(gameObject);
+            col.enabled = false;
+            anims.OnBreak(() => Destroy(gameObject));
         }
     }
 }
