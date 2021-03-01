@@ -696,15 +696,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3610256057599448906, guid: 4f16d6c8279047d4bb5a851351df1da7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.66
+      value: -20.86
       objectReference: {fileID: 0}
     - target: {fileID: 3610256057599448906, guid: 4f16d6c8279047d4bb5a851351df1da7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.4
+      value: 5.6
       objectReference: {fileID: 0}
-    - target: {fileID: 3610256059024497967, guid: 4f16d6c8279047d4bb5a851351df1da7, type: 3}
-      propertyPath: speed
-      value: 7
+    - target: {fileID: 3610256057599449012, guid: 4f16d6c8279047d4bb5a851351df1da7, type: 3}
+      propertyPath: m_Dithering
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3610256057599449012, guid: 4f16d6c8279047d4bb5a851351df1da7, type: 3}
+      propertyPath: m_Antialiasing
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3610256059112810478, guid: 4f16d6c8279047d4bb5a851351df1da7, type: 3}
       propertyPath: m_LocalPosition.x
