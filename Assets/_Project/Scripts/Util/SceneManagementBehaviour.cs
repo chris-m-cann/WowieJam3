@@ -10,7 +10,7 @@ namespace Util
             var current = SceneManager.GetActiveScene().buildIndex;
             var next = current + 1;
 
-            if (next >= SceneManager.sceneCount)
+            if (next >= SceneManager.sceneCountInBuildSettings)
             {
                 next = 0;
             }

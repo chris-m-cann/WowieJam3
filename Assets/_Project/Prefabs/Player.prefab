@@ -427,6 +427,7 @@ MonoBehaviour:
     Item1: 0
     Item2: 
   onPickup: {fileID: 11400000, guid: 16d0425a8de5d094ba701cd073f0d16a, type: 2}
+  onPickupObjectOnly: {fileID: 0}
 --- !u!120 &4403713953544457962
 LineRenderer:
   m_ObjectHideFlags: 0

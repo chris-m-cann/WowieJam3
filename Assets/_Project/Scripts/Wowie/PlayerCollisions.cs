@@ -12,6 +12,7 @@ namespace Wowie
         [SerializeField] private Pair<int, string> layerMap;
 
         [SerializeField] private BlockPickupGameEvent onPickup;
+        [SerializeField] private VoidGameEvent onPickupObjectOnly;
 
         private int _layer = -1;
         private PlayerTail _tail;
@@ -38,6 +39,7 @@ namespace Wowie
                 _tail.AddBlock(pickup.BlockPrefab, pickup);
 
                 onPickup.Raise(pickup);
+                onPickupObjectOnly.Raise();
                 ChangeLayer(pickup);
             }
         }

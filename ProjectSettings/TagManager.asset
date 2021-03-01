@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TailPiece
   - Pickup
+  - Music
   layers:
   - Default
   - TransparentFX

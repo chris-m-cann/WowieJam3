@@ -40,6 +40,20 @@ namespace Wowie
 
         private void FixedUpdate()
         {
+            if (!_acceptingInput)
+            {
+                _rigidbody.velocity = transform.right * speed;
+
+                Transform connection = transform;
+
+                foreach (TailBlock block in _tail.Tail)
+                {
+                    block.Move(connection, _tail.Spacing, minDistanceBetweenTailBlocks);
+                    connection = block.transform;
+                }
+                return;
+            }
+
             if (Vector3.Distance(transform.position, mousePoint) > minDistanceToMouse)
             {
                 var y = Vector3.SignedAngle(Vector3.up, targetDir, Vector3.forward);
@@ -64,6 +78,7 @@ namespace Wowie
         public void StopAcceptingInput()
         {
             _acceptingInput = false;
+            _rigidbody.angularDrag = 100000;
         }
     }
 }
